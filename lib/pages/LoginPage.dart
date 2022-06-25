@@ -1,4 +1,6 @@
 import 'package:arishti_chatroom/constants/routes.dart';
+import 'package:arishti_chatroom/constants/strings.dart';
+import 'package:arishti_chatroom/constants/styles.dart';
 import 'package:arishti_chatroom/models/user_model.dart';
 import 'package:arishti_chatroom/network/auth_apis.dart';
 import 'package:arishti_chatroom/widgets/buttons/rounded_button.dart';
@@ -40,27 +42,6 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  final kLoginTextFieldDecoration = const InputDecoration(
-    hintText: 'Enter a value',
-    hintStyle: TextStyle(
-      color: Colors.grey,
-    ),
-    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(32.0)),
-    ),
-    enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.blueAccent, width: 1.0),
-      borderRadius: BorderRadius.all(Radius.circular(32.0)),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.blueAccent, width: 2.0),
-      borderRadius: BorderRadius.all(Radius.circular(32.0)),
-    ),
-  );
-
-  final kLoginTextFieldTextStyle = const TextStyle(color: Colors.black);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,30 +56,26 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               TextField(
                 keyboardType: TextInputType.emailAddress,
-                style: kLoginTextFieldTextStyle,
+                style: Styles.loginTextFieldTextStyle,
                 textAlign: TextAlign.center,
                 onChanged: (value) => username = value,
-                decoration: kLoginTextFieldDecoration.copyWith(
-                  hintText: "Enter your email",
+                decoration: Styles.loginTextFieldDecoration.copyWith(
+                  hintText: Strings.usernameField,
                 ),
               ),
-              const SizedBox(
-                height: 8.0,
-              ),
+              const SizedBox(height: 8.0),
               TextField(
                 obscureText: true,
                 textAlign: TextAlign.center,
-                style: kLoginTextFieldTextStyle,
+                style: Styles.loginTextFieldTextStyle,
                 onChanged: (value) => password = value,
-                decoration: kLoginTextFieldDecoration.copyWith(
-                  hintText: "Enter your password",
+                decoration: Styles.loginTextFieldDecoration.copyWith(
+                  hintText: Strings.passwordField,
                 ),
               ),
-              const SizedBox(
-                height: 24.0,
-              ),
+              const SizedBox(height: 24.0),
               RoundedButton(
-                label: 'Log In',
+                label: Strings.loginButton,
                 color: Colors.lightBlueAccent,
                 onTap: login,
               ),

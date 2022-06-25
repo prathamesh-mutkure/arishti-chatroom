@@ -23,14 +23,18 @@ class _WelcomePageState extends State<WelcomePage> {
             RoundedButton(
               label: 'Log In',
               // onTap: () => Navigator.pushNamed(context, Routes.loginPage),
-              onTap: () => Navigator.pushNamed(context, Routes.loginPage),
+              onTap: () => Navigator.pushNamed(
+                context,
+                Routes.loginPage,
+              ),
               color: Colors.lightBlueAccent,
             ),
             RoundedButton(
               label: 'Register',
-              onTap: () =>
-                  // Navigator.pushNamed(context, Routes.registrationPage),
-                  Navigator.pushNamed(context, Routes.homePage),
+              onTap: () => Navigator.pushNamed(
+                context,
+                Routes.registrationPage,
+              ),
               color: Colors.blueAccent,
             )
           ],

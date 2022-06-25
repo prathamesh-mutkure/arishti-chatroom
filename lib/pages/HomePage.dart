@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:arishti_chatroom/constants/api_endpoints.dart';
+import 'package:arishti_chatroom/constants/styles.dart';
 import 'package:arishti_chatroom/models/message_model.dart';
 import 'package:arishti_chatroom/models/user_model.dart';
 import 'package:arishti_chatroom/network/auth_apis.dart';
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-  // TODO: Organise Sockets
+  // TODO: Organise Sockets and sendMessage into seperate Files/Classes
   void connectAndListen(BuildContext context) async {
     socket = IO.io(
       APIEndpoint.backendURL,
@@ -119,35 +120,21 @@ class _HomePageState extends State<HomePage> {
           children: [
             const MessageContainer(),
             Container(
-              decoration: const BoxDecoration(
-                border: Border(
-                  top: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
-                ),
-              ),
+              decoration: Styles.messageContainerDecoration,
               child: Row(
                 children: [
                   Expanded(
                     child: TextField(
                       controller: messageTextController,
                       onChanged: (value) => messageText = value,
-                      // decoration: kMessageTextFieldDecoration,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 20.0),
-                        hintText: 'Type your message here...',
-                        border: InputBorder.none,
-                      ),
+                      decoration: Styles.messageTextFieldDecoration,
                     ),
                   ),
                   TextButton(
                     onPressed: sendMessage,
                     child: const Text(
                       'Send',
-                      style: TextStyle(
-                        color: Colors.lightBlueAccent,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18.0,
-                      ),
+                      style: Styles.sendButtonTextStyle,
                     ),
                   ),
                 ],
