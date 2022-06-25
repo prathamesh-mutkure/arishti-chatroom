@@ -11,6 +11,8 @@ abstract class _MessageStore with Store {
 
   ObservableList<Message> get messages => _messages;
 
+  // TODO: Sort Messages by createdAt
+
   @action
   setMessages(List<Message> messages) async {
     _messages = ObservableList.of(messages);
@@ -19,7 +21,5 @@ abstract class _MessageStore with Store {
   @action
   addMessage(Message message) async {
     _messages.add(message);
-
-    // TODO: Sort here
   }
 }

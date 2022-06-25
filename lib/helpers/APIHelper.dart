@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:arishti_chatroom/constants/api_endpoints.dart';
+import 'package:arishti_chatroom/helpers/AppHelper.dart';
 import 'package:arishti_chatroom/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -21,6 +22,7 @@ class APIHelper {
       return _returnResponse(response);
     } catch (error) {
       debugPrint("Error in $endpoint -> $error");
+      AppHelper.showToast("Error in $endpoint -> $error");
     }
   }
 
@@ -36,6 +38,7 @@ class APIHelper {
       return _returnResponse(response);
     } catch (error) {
       debugPrint("Error in $endpoint -> $error");
+      AppHelper.showToast("Error in $endpoint -> $error");
     }
   }
 
@@ -51,8 +54,8 @@ class APIHelper {
 
       return _returnResponse(response);
     } catch (error) {
-      // TODO: Handle error
       debugPrint("Error in $endpoint -> $error");
+      AppHelper.showToast("Error in $endpoint -> $error");
       return null;
     }
   }
@@ -64,6 +67,9 @@ class APIHelper {
       case 200:
         return json.decode(response.body.toString());
       default:
+        AppHelper.showToast(
+          "Error ${response.statusCode}: ${jsonDecode(response.body)}",
+        );
         throw Exception(
           "Error ${response.statusCode}: ${jsonDecode(response.body)}",
         );

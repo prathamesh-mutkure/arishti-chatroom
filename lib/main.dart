@@ -6,11 +6,10 @@ import 'package:arishti_chatroom/pages/WelcomePage.dart';
 import 'package:arishti_chatroom/stores/message_store.dart';
 import 'package:arishti_chatroom/stores/user_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 
 // flutter packages pub run build_runner build
-// TODO: Add ENV
-// TODO: Add Toasts
 // TODO: Theming
 
 void main() {
@@ -40,6 +39,7 @@ class MyApp extends StatelessWidget {
           ? const HomePage()
           : const WelcomePage(),
       debugShowCheckedModeBanner: false,
+      builder: EasyLoading.init(),
     );
   }
 }

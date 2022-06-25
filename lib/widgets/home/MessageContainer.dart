@@ -15,9 +15,6 @@ class MessageContainer extends StatelessWidget {
         var messages = context.watch<MessageStore>().messages;
         var currentUser = context.watch<UserStore>().currentUser;
 
-        // messages.sort((a, b) => a.createdAt.compareTo(b.createdAt));
-        // TODO: Check Sorting
-
         return Expanded(
           child: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),

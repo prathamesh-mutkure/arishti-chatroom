@@ -2,8 +2,11 @@ class APIEndpoint {
   APIEndpoint._();
 
   // Base URL
-  static const String backendURL = "http://localhost:8000";
-  static const String baseURL = "http://localhost:8000/api";
+  static const String backendURL = String.fromEnvironment(
+    "BACKEND_URL",
+    defaultValue: "http://localhost:8000",
+  );
+  static const String baseURL = "$backendURL/api";
 
   // auth
   static const String login = "/login";
