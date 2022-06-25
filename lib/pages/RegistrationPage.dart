@@ -1,7 +1,11 @@
+import 'package:arishti_chatroom/constants/routes.dart';
 import 'package:arishti_chatroom/constants/strings.dart';
 import 'package:arishti_chatroom/constants/styles.dart';
+import 'package:arishti_chatroom/models/user_model.dart';
+import 'package:arishti_chatroom/network/auth_apis.dart';
 import 'package:arishti_chatroom/widgets/buttons/rounded_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class RegistrationPage extends StatefulWidget {
@@ -16,8 +20,28 @@ class _RegistrationPageState extends State<RegistrationPage> {
   String username = "";
   String password = "";
 
-  void register() {
-    // TODO: Implement Register
+  void register() async {
+    try {
+      setState(() => showSpinner = true);
+
+      User? user = await AuthAPI.register(username, password, context);
+
+      if (user != null) {
+        setState(() => showSpinner = false);
+
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          Routes.homePage,
+          (route) => false,
+        );
+
+        setState(() => showSpinner = false);
+      }
+    } catch (err) {
+      debugPrint("Error registering: $err");
+      EasyLoading.showToast("Error registering: $err");
+      setState(() => showSpinner = false);
+    }
   }
 
   @override

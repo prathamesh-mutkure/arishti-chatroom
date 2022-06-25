@@ -5,6 +5,7 @@ import 'package:arishti_chatroom/models/user_model.dart';
 import 'package:arishti_chatroom/network/auth_apis.dart';
 import 'package:arishti_chatroom/widgets/buttons/rounded_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class LoginPage extends StatefulWidget {
@@ -36,8 +37,9 @@ class _LoginPageState extends State<LoginPage> {
 
         setState(() => showSpinner = false);
       }
-    } catch (e) {
-      debugPrint("Error logging in: $e");
+    } catch (err) {
+      debugPrint("Error logging in: $err");
+      EasyLoading.showToast("Error logging in: $err");
       setState(() => showSpinner = false);
     }
   }

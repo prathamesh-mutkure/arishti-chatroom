@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-  // TODO: Organise Sockets and sendMessage into seperate Files/Classes
+  // TODO: Organise Sockets and sendMessage into separate Files/Classes
   void connectAndListen(BuildContext context) async {
     socket = IO.io(
       APIEndpoint.backendURL,
@@ -50,6 +50,8 @@ class _HomePageState extends State<HomePage> {
           .setQuery(<String, dynamic>{
             "token": context.read<UserStore>().currentUser?.token
           })
+          .enableForceNewConnection()
+          .enableReconnection()
           .build(),
     );
 
@@ -57,8 +59,6 @@ class _HomePageState extends State<HomePage> {
       try {
         final json = jsonDecode(data);
         Message message = Message.fromJson(json);
-
-        print(message.text);
 
         context.read<MessageStore>().addMessage(message);
       } catch (err) {

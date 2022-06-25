@@ -26,6 +26,23 @@ class AuthAPI {
     return user;
   }
 
+  static Future<User?> register(
+    String username,
+    String password,
+    BuildContext context,
+  ) async {
+    final response = await APIHelper.post(
+      APIEndpoint.register,
+      {"username": username, "password": password},
+    );
+
+    User user = User.fromJson(response);
+
+    context.read<UserStore>().login(user);
+
+    return user;
+  }
+
   static void logout(BuildContext context) async {
     context.read<UserStore>().logout();
 
