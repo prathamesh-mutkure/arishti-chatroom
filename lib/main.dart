@@ -9,6 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // flutter packages pub run build_runner build
+// TODO: Add ENV
+// TODO: Add Toasts
+// TODO: Theming
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

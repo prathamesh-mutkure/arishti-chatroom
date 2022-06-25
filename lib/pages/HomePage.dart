@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:arishti_chatroom/constants/api_endpoints.dart';
 import 'package:arishti_chatroom/models/message_model.dart';
 import 'package:arishti_chatroom/models/user_model.dart';
+import 'package:arishti_chatroom/network/auth_apis.dart';
 import 'package:arishti_chatroom/network/message_apis.dart';
 import 'package:arishti_chatroom/stores/message_store.dart';
 import 'package:arishti_chatroom/stores/user_store.dart';
@@ -93,8 +94,9 @@ class _HomePageState extends State<HomePage> {
     messageTextController.clear();
   }
 
-  // TODO: Add sign out code
-  // TODO: Fix navigation
+  void logOut() {
+    AuthAPI.logout(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,13 +105,11 @@ class _HomePageState extends State<HomePage> {
         leading: null,
         actions: [
           IconButton(
-              icon: const Icon(Icons.close),
-              onPressed: () async {
-                // await _auth.signOut();
-                Navigator.pop(context);
-              }),
+            icon: const Icon(Icons.logout),
+            onPressed: logOut,
+          ),
         ],
-        title: const Text('Arishti'),
+        title: const Text('Arishti Chatroom'),
         backgroundColor: Colors.lightBlueAccent,
       ),
       body: SafeArea(

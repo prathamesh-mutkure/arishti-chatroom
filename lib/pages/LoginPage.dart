@@ -21,11 +21,18 @@ class _LoginPageState extends State<LoginPage> {
     try {
       setState(() => showSpinner = true);
 
-      User user = await AuthAPI.login(username, password, context);
+      User? user = await AuthAPI.login(username, password, context);
 
       if (user != null) {
         setState(() => showSpinner = false);
-        Navigator.pushReplacementNamed(context, Routes.homePage);
+
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          Routes.homePage,
+          (route) => false,
+        );
+
+        setState(() => showSpinner = false);
       }
     } catch (e) {
       debugPrint("Error logging in: $e");
